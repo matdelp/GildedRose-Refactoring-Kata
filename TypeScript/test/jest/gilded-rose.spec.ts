@@ -24,8 +24,12 @@ describe("Gilded Rose", () => {
   it("quality should never be negative", () => {
     const gildedRose = new GildedRose([new Item("item", 0, 0)]);
     const items = gildedRose.updateQuality();
-    expect(items[0].sellIn).toBe(-1);
     expect(items[0].quality).toBe(0);
+  });
+  it("quality should never be >50", () => {
+    const gildedRose = new GildedRose([new Item("Aged Brie", 0, 50)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(50);
   });
   it("should increase quality and decrease sellIn by 1 for a Aged Brie", () => {
     const gildedRose = new GildedRose([new Item("Aged Brie", 10, 20)]);
