@@ -26,8 +26,13 @@ describe("Gilded Rose", () => {
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toBe(0);
   });
-  it("quality should never be >50", () => {
+  it("quality should never be >50 for items other than Sulfuras", () => {
     const gildedRose = new GildedRose([new Item("Aged Brie", 0, 50)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(50);
+  });
+  it("quality should never be 80 for Sulfuras", () => {
+    const gildedRose = new GildedRose([new Item("Sulfuras", 0, 80)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toBe(50);
   });
@@ -45,7 +50,7 @@ describe("Gilded Rose", () => {
   it("should never decrease quality for a Sulfuras", () => {
     const gildedRose = new GildedRose([new Item("Sulfuras", 0, 80)]);
     const items = gildedRose.updateQuality();
-    expect(items[0].quality).toBe(20);
+    expect(items[0].quality).toBe(80);
   });
   it("should increase quality by 1 when more than 10 days  in sellIn for Backstage passes", () => {
     const gildedRose = new GildedRose([new Item("Backstage passes", 11, 20)]);
