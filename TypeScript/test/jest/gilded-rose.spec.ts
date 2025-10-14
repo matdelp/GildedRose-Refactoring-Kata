@@ -43,8 +43,28 @@ describe("Gilded Rose", () => {
     expect(items[0].quality).toBe(20);
   });
   it("should never decrease quality for a Sulfuras", () => {
-    const gildedRose = new GildedRose([new Item("Sulfuras", 0, 20)]);
+    const gildedRose = new GildedRose([new Item("Sulfuras", 0, 80)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toBe(20);
+  });
+  it("should increase quality by 1 when more than 10 days  in sellIn for Backstage passes", () => {
+    const gildedRose = new GildedRose([new Item("Backstage passes", 11, 20)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(21);
+  });
+  it("should increase quality by 2 when 10 days or less in sellIn for Backstage passes", () => {
+    const gildedRose = new GildedRose([new Item("Backstage passes", 9, 20)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(22);
+  });
+  it("should increase quality by 3 when 5 days or less in sellIn for Backstage passes", () => {
+    const gildedRose = new GildedRose([new Item("Backstage passes", 5, 20)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(23);
+  });
+  it("should set quality to 0 when sellIn is negative for Backstage passes", () => {
+    const gildedRose = new GildedRose([new Item("Backstage passes", -1, 20)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(0);
   });
 });
