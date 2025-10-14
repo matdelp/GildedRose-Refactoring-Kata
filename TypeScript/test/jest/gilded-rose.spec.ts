@@ -15,6 +15,12 @@ describe("Gilded Rose", () => {
     expect(items[0].sellIn).toBe(9);
     expect(items[0].quality).toBe(19);
   });
+  it("should decrease quality by 2 for an item after sellIn date passed", () => {
+    const gildedRose = new GildedRose([new Item("item", 0, 20)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].sellIn).toBe(-1);
+    expect(items[0].quality).toBe(18);
+  });
   it("should increase quality and decrease sellIn by 1 for a Aged Brie", () => {
     const gildedRose = new GildedRose([new Item("Aged Brie", 10, 20)]);
     const items = gildedRose.updateQuality();
