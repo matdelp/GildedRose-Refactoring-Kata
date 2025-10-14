@@ -37,4 +37,14 @@ describe("Gilded Rose", () => {
     expect(items[0].sellIn).toBe(9);
     expect(items[0].quality).toBe(21);
   });
+  it("should not decrease quality for a Sulfuras", () => {
+    const gildedRose = new GildedRose([new Item("Sulfuras", 10, 20)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(20);
+  });
+  it("should never decrease quality for a Sulfuras", () => {
+    const gildedRose = new GildedRose([new Item("Sulfuras", 0, 20)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(20);
+  });
 });
