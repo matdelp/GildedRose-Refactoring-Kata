@@ -1,4 +1,4 @@
-import { Item } from "@/gilded-rose";
+import { Item } from "@/class";
 import { increaseQualityBySellinConcert } from "@/utils";
 
 describe("Is decreasing quality depending on SellIn value", () => {

@@ -1,20 +1,9 @@
+import { Item } from "./class";
 import {
   increaseQualityBySellinBrie,
   increaseQualityBySellinConcert,
   isCommonItem,
 } from "./utils";
-
-export class Item {
-  name: string;
-  sellIn: number;
-  quality: number;
-
-  constructor(name, sellIn, quality) {
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
-  }
-}
 
 export class GildedRose {
   items: Array<Item>;
@@ -25,31 +14,39 @@ export class GildedRose {
 
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].name === "Sulfuras, Hand of Ragnaros") {
-        this.items[i].sellIn--;
+      const currentItem = this.items[i];
+
+      if (currentItem.quality <= 0) {
+        currentItem.sellIn--;
         break;
       }
 
-      if (isCommonItem(this.items[i].name) && this.items[i].quality > 0) {
-        this.items[i].quality--;
-        if (this.items[i].sellIn <= 0) {
-          this.items[i].quality--;
+      if (currentItem.name === "Sulfuras, Hand of Ragnaros") {
+        currentItem.sellIn--;
+        break;
+      }
+
+      if (isCommonItem(currentItem.name)) {
+        currentItem.quality--;
+        if (currentItem.sellIn <= 0) {
+          currentItem.quality--;
         }
-        this.items[i].sellIn--;
+        currentItem.sellIn--;
+        break;
+      }
+      if (currentItem.quality >= 50) {
+        currentItem.sellIn--;
         break;
       }
 
-      if (
-        this.items[i].quality < 50 &&
-        this.items[i].name == "Backstage passes to a TAFKAL80ETC concert"
-      ) {
-        increaseQualityBySellinConcert(this.items[i]);
-        this.items[i].sellIn--;
+      if (currentItem.name == "Backstage passes to a TAFKAL80ETC concert") {
+        increaseQualityBySellinConcert(currentItem);
+        currentItem.sellIn--;
         break;
       }
-      if (this.items[i].quality < 50 && this.items[i].name == "Aged Brie") {
-        increaseQualityBySellinBrie(this.items[i]);
-        this.items[i].sellIn--;
+      if (currentItem.name == "Aged Brie") {
+        increaseQualityBySellinBrie(currentItem);
+        currentItem.sellIn--;
         break;
       }
     }

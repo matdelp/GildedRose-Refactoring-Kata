@@ -1,4 +1,5 @@
-import { Item, GildedRose } from "@/gilded-rose";
+import { Item } from "@/class";
+import { GildedRose } from "@/gilded-rose";
 
 //Item("name", sellIn, quality)
 
@@ -8,6 +9,28 @@ describe("Gilded Rose", () => {
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("foo");
   });
+
+  it("should not change quality if already null", () => {
+    const gildedRose = new GildedRose([new Item("item", 10, 0)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].sellIn).toBe(9);
+    expect(items[0].quality).toBe(0);
+  });
+  it("should not increase quality if already 50", () => {
+    const gildedRose = new GildedRose([new Item("Aged Brie", 10, 50)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].sellIn).toBe(9);
+    expect(items[0].quality).toBe(50);
+  });
+  it("should not increase quality if already 50", () => {
+    const gildedRose = new GildedRose([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 10, 50),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].sellIn).toBe(9);
+    expect(items[0].quality).toBe(50);
+  });
+
   it("should decrease quality and sellIn by 1 for a common item", () => {
     const gildedRose = new GildedRose([new Item("item", 10, 20)]);
     const items = gildedRose.updateQuality();
