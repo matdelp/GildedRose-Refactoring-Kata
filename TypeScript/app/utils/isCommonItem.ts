@@ -5,5 +5,5 @@ const SPECIAL_ITEMS = [
 ];
 
 export const isCommonItem = (name) => {
-  return SPECIAL_ITEMS.includes(name);
+  return !SPECIAL_ITEMS.includes(name);
 };
