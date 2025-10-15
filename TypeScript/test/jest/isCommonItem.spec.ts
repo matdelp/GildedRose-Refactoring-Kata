@@ -1,4 +1,4 @@
-import { isCommonItem } from "@/isCommonItem";
+import { isCommonItem } from "@/utils/isCommonItem";
 
 describe("Is commmon Item", () => {
   it("should return true if Item's name is not Aged Brie, Backstage passes to a TAFKAL80ETC concert or Sulfuras, Hand of Ragnaros", () => {
