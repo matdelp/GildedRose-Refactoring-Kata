@@ -1,4 +1,8 @@
-import { isCommonItem } from "./utils/isCommonItem";
+import {
+  decreaseQualityBySellin,
+  increaseQualityBySellin,
+  isCommonItem,
+} from "./utils";
 
 export class Item {
   name: string;
@@ -39,24 +43,12 @@ export class GildedRose {
         this.items[i].quality < 50 &&
         this.items[i].name == "Backstage passes to a TAFKAL80ETC concert"
       ) {
-        this.items[i].quality++;
-        if (this.items[i].sellIn < 11) {
-          this.items[i].quality++;
-        }
-        if (this.items[i].sellIn < 6) {
-          this.items[i].quality++;
-        }
-        if (this.items[i].sellIn < 0) {
-          this.items[i].quality = 0;
-        }
+        decreaseQualityBySellin(this.items[i]);
         this.items[i].sellIn--;
         break;
       }
       if (this.items[i].quality < 50 && this.items[i].name == "Aged Brie") {
-        this.items[i].quality++;
-        if (this.items[i].sellIn < 0) {
-          this.items[i].quality++;
-        }
+        increaseQualityBySellin(this.items[i]);
         this.items[i].sellIn--;
         break;
       }
