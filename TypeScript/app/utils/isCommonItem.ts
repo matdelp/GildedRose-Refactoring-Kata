@@ -1,9 +1,9 @@
+const SPECIAL_ITEMS = [
+  "Aged Brie",
+  "Backstage passes to a TAFKAL80ETC concert",
+  "Sulfuras, Hand of Ragnaros",
+];
+
 export const isCommonItem = (name) => {
-  if (
-    name === "Aged Brie" ||
-    name === "Backstage passes to a TAFKAL80ETC concert" ||
-    name === "Sulfuras, Hand of Ragnaros"
-  )
-    return false;
-  else return true;
+  return SPECIAL_ITEMS.includes(name);
 };
