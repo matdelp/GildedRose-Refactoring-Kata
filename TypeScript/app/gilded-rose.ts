@@ -1,6 +1,6 @@
 import {
-  decreaseQualityBySellin,
-  increaseQualityBySellin,
+  increaseQualityBySellinBrie,
+  increaseQualityBySellinConcert,
   isCommonItem,
 } from "./utils";
 
@@ -43,12 +43,12 @@ export class GildedRose {
         this.items[i].quality < 50 &&
         this.items[i].name == "Backstage passes to a TAFKAL80ETC concert"
       ) {
-        decreaseQualityBySellin(this.items[i]);
+        increaseQualityBySellinConcert(this.items[i]);
         this.items[i].sellIn--;
         break;
       }
       if (this.items[i].quality < 50 && this.items[i].name == "Aged Brie") {
-        increaseQualityBySellin(this.items[i]);
+        increaseQualityBySellinBrie(this.items[i]);
         this.items[i].sellIn--;
         break;
       }
