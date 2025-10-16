@@ -1,3 +1,4 @@
+import { Item } from "@/class";
 import {
   increaseQualityBySellinBrie,
   increaseQualityBySellinConcert,
@@ -5,20 +6,20 @@ import {
 import { isCommonItem } from "./isCommonItem";
 import { updateCommonItem } from "./updateCommonItem";
 
-export const updateItem = (currentItem) => {
-  if (isCommonItem(currentItem.name)) {
-    updateCommonItem(currentItem);
+export const updateItem = (item: Item): void => {
+  if (isCommonItem(item.name)) {
+    updateCommonItem(item);
     return;
   }
-  if (currentItem.name == "Backstage passes to a TAFKAL80ETC concert") {
-    increaseQualityBySellinConcert(currentItem);
+  if (item.name == "Backstage passes to a TAFKAL80ETC concert") {
+    increaseQualityBySellinConcert(item);
   }
-  if (currentItem.name == "Aged Brie") {
-    increaseQualityBySellinBrie(currentItem);
+  if (item.name == "Aged Brie") {
+    increaseQualityBySellinBrie(item);
   }
-  currentItem.sellIn--;
-  if (currentItem.name === "Sulfuras, Hand of Ragnaros") {
+  item.sellIn--;
+  if (item.name === "Sulfuras, Hand of Ragnaros") {
     return;
   }
-  currentItem.quality = Math.min(currentItem.quality, 50);
+  item.quality = Math.min(item.quality, 50);
 };
