@@ -11,5 +11,3 @@ export const updateCommonItem = (currentItem: Item): void => {
   currentItem.quality--;
   currentItem.sellIn--;
 };
-
-//TODO tests
