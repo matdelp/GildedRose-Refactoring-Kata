@@ -5,10 +5,15 @@ import {
 } from "./increaseQualityBySellIn";
 import { isCommonItem } from "./isCommonItem";
 import { updateCommonItem } from "./updateCommonItem";
+import { updateConjuredItem } from "./updateConjuredItem";
 
 export const updateItem = (item: Item): void => {
   if (isCommonItem(item.name)) {
     updateCommonItem(item);
+    return;
+  }
+  if (item.name == "Conjured Item") {
+    updateConjuredItem(item);
     return;
   }
   if (item.name == "Backstage passes to a TAFKAL80ETC concert") {
